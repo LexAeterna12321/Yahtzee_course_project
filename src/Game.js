@@ -5,13 +5,13 @@ import "./Game.css";
 
 const NUM_DICE = 5;
 const NUM_ROLLS = 3;
-const fullHouseMockup = [2, 2, 4, 4, 2];
+const diceStartingMockup = [1, 2, 3, 4, 6];
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // dice: Array.from({ length: NUM_DICE }),
-      dice: fullHouseMockup,
+      dice: diceStartingMockup,
       locked: Array(NUM_DICE).fill(false),
       rollsLeft: NUM_ROLLS,
       scores: {
