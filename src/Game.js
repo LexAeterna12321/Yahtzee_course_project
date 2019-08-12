@@ -75,6 +75,7 @@ class Game extends Component {
 
           <section className="Game-dice-section">
             <Dice
+              rollsLeft={this.state.rollsLeft}
               dice={this.state.dice}
               locked={this.state.locked}
               toggleLocked={this.toggleLocked}

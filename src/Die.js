@@ -8,6 +8,7 @@ class Die extends Component {
   render() {
     return (
       <button
+        disabled={this.props.rollsLeft === 0}
         className={"Die"}
         style={{ backgroundColor: this.props.locked ? "grey" : "black" }}
         onClick={this.handleClick}
