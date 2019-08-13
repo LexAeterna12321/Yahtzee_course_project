@@ -12,18 +12,19 @@ class Dice extends Component {
     6: "six"
   };
   render() {
+    const { dice, rollsLeft, toggleLocked, locked, isRolling } = this.props;
     return (
       <div className="Dice">
-        {this.props.dice.map((d, idx) => (
+        {dice.map((d, idx) => (
           <Die
-            rollsLeft={this.props.rollsLeft}
-            toggleLocked={this.props.toggleLocked}
+            rollsLeft={rollsLeft}
+            toggleLocked={toggleLocked}
             val={d}
             icon={this.props[d]}
-            locked={this.props.locked[idx]}
+            locked={locked[idx]}
             idx={idx}
             key={idx}
-            isRolling={this.props.isRolling}
+            isRolling={isRolling}
           />
         ))}
       </div>
