@@ -6,14 +6,17 @@ class Die extends Component {
     this.props.toggleLocked(this.props.idx);
   };
   render() {
+    const { locked, isRolling, rollsLeft, icon } = this.props;
     return (
       <button
-        disabled={this.props.rollsLeft === 0}
-        className={"Die"}
-        style={{ backgroundColor: this.props.locked ? "grey" : "black" }}
+        disabled={rollsLeft === 0}
+        className={`Die ${locked && "Die-locked"} ${isRolling &&
+          !locked &&
+          "Die-rolling"}`}
+        style={{ color: locked ? "#ae7ae5" : "white" }}
         onClick={this.handleClick}
       >
-        {this.props.val}
+        <i className={`fas fa-dice-${icon}`} />
       </button>
     );
   }

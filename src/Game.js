@@ -14,6 +14,7 @@ class Game extends Component {
       dice: diceStartingMockup,
       locked: Array(NUM_DICE).fill(false),
       rollsLeft: NUM_ROLLS,
+      isRolling: false,
       scores: {
         ones: undefined,
         twos: undefined,
@@ -33,6 +34,15 @@ class Game extends Component {
     this.roll = this.roll.bind(this);
     this.doScore = this.doScore.bind(this);
     this.toggleLocked = this.toggleLocked.bind(this);
+    this.animateRoll = this.animateRoll.bind(this);
+  }
+
+  animateRoll() {
+    this.setState({ isRolling: true }, () => {
+      setTimeout(() => {
+        this.setState({ isRolling: false });
+      }, 1000);
+    });
   }
 
   roll(evt) {
@@ -41,9 +51,11 @@ class Game extends Component {
       dice: st.dice.map((d, i) =>
         st.locked[i] ? d : Math.ceil(Math.random() * 6)
       ),
+
       locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
       rollsLeft: st.rollsLeft - 1
     }));
+    this.animateRoll();
   }
 
   toggleLocked(idx) {
@@ -79,11 +91,14 @@ class Game extends Component {
               dice={this.state.dice}
               locked={this.state.locked}
               toggleLocked={this.toggleLocked}
+              isRolling={this.state.isRolling}
             />
             <div className="Game-button-wrapper">
               <button
                 className="Game-reroll"
-                disabled={this.state.locked.every(x => x)}
+                disabled={
+                  this.state.locked.every(x => x) || this.state.isRolling
+                }
                 onClick={this.roll}
               >
                 {this.state.rollsLeft} Rerolls Left
