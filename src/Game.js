@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Dice from "./Dice";
 import ScoreTable from "./ScoreTable";
 import "./Game.css";
+import OverallScore from "./OverallScore";
 
 const NUM_DICE = 5;
 const NUM_ROLLS = 3;
@@ -107,6 +108,7 @@ class Game extends Component {
           </section>
         </header>
         <ScoreTable doScore={this.doScore} scores={this.state.scores} />
+        <OverallScore scores={this.state.scores} />
       </div>
     );
   }
